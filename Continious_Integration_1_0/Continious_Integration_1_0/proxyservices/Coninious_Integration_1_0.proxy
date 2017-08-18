@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml-fragment xmlns:ser="http://www.bea.com/wli/sb/services" xmlns:tran="http://www.bea.com/wli/sb/transports" xmlns:env="http://www.bea.com/wli/config/env" xmlns:http="http://www.bea.com/wli/sb/transports/http" xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+  <ser:coreEntry isProxy="true" isEnabled="true">
+    <ser:binding type="abstract XML"/>
+    <ser:monitoring isEnabled="false">
+      <ser:aggregationInterval>10</ser:aggregationInterval>
+      <ser:pipelineMonitoringLevel>Pipeline</ser:pipelineMonitoringLevel>
+    </ser:monitoring>
+    <ser:reporting>true</ser:reporting>
+    <ser:logging isEnabled="true">
+      <ser:logLevel>debug</ser:logLevel>
+    </ser:logging>
+    <ser:sla-alerting isEnabled="true">
+      <ser:alertLevel>normal</ser:alertLevel>
+    </ser:sla-alerting>
+    <ser:pipeline-alerting isEnabled="true">
+      <ser:alertLevel>normal</ser:alertLevel>
+    </ser:pipeline-alerting>
+  </ser:coreEntry>
+  <ser:endpointConfig>
+    <tran:provider-id>http</tran:provider-id>
+    <tran:inbound>true</tran:inbound>
+    <tran:URI>
+      <env:value>/Continious_Integration_1_0/proxyservices/Coninious_Integration_1_0</env:value>
+    </tran:URI>
+    <tran:inbound-properties/>
+    <tran:all-headers>false</tran:all-headers>
+    <tran:provider-specific>
+      <http:inbound-properties/>
+    </tran:provider-specific>
+  </ser:endpointConfig>
+  <ser:router>
+    <con:pipeline type="request" name="PipelinePairNode1_request">
+      <con:stage name="stage1">
+        <con:context/>
+        <con:actions>
+          <con1:assign varName="Request">
+            <con2:id>_ActionId-6637591351740692086--52d9ca71.15df4932c6d.-7fd3</con2:id>
+            <con1:expr>
+              <con2:xqueryText>"entry"</con2:xqueryText>
+            </con1:expr>
+          </con1:assign>
+        </con:actions>
+      </con:stage>
+    </con:pipeline>
+    <con:pipeline type="response" name="PipelinePairNode1_response">
+      <con:stage name="stage1">
+        <con:context/>
+        <con:actions>
+          <con1:assign varName="Response">
+            <con2:id>_ActionId-6637591351740692086--52d9ca71.15df4932c6d.-7fb2</con2:id>
+            <con1:expr>
+              <con2:xqueryText>"exit"</con2:xqueryText>
+            </con1:expr>
+          </con1:assign>
+        </con:actions>
+      </con:stage>
+    </con:pipeline>
+    <con:flow>
+      <con:pipeline-node name="PipelinePairNode1">
+        <con:request>PipelinePairNode1_request</con:request>
+        <con:response>PipelinePairNode1_response</con:response>
+      </con:pipeline-node>
+    </con:flow>
+  </ser:router>
+</xml-fragment>

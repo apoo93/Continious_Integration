@@ -1,0 +1,31 @@
+<!--Date         Version                Author                       Change Description
+   02/11/2016      1.0                Apoorva         Updated error codes as a part CI Project-->
+<ec:errorMapConfig xmlns:ec="http://soa.o2.co.uk/config/ErrorMapConfig">
+	<ec:service name="Continious_Integration_1_0">
+
+		
+		<ec:commonMap>
+
+            		<ec:errorMap>
+				<ec:sourceErrorCodes>
+					<ec:code>1000</ec:code>
+				</ec:sourceErrorCodes>
+				
+				<ec:destErrorCode>
+					<ec:code>CI-36120-4002-V</ec:code>
+					<ec:description>MSISDN provided is not in international format</ec:description>
+				</ec:destErrorCode>
+			</ec:errorMap>	
+
+			
+		</ec:commonMap>	
+	
+		<ec:unknownError>
+			<ec:destErrorCode>
+				<ec:code>CI-36120-2002-F</ec:code>
+				<ec:description>An unknown error has occurred</ec:description>
+			</ec:destErrorCode>
+		</ec:unknownError>
+	</ec:service>
+
+</ec:errorMapConfig>
